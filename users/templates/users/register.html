@@ -1,0 +1,17 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <p>
+    <a href="{% url 'learning_logs:index' %}">Home</a> /
+  </p>
+
+  <p>Register</p>
+  <form method="POST" action="{% url 'users:register' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button name="submit">Register</button>
+  <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+  </form>
+
+{% endblock content %}

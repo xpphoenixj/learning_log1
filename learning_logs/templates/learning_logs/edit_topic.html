@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block navb %}
+  <ul class="nav navbar-nav">
+    <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+{#    <li><a href="{% url 'learning_logs:topic' topic.id%}">Topic: {{ topic }}</a></li>#}
+  </ul>
+{% endblock navb %}
+
+{% block content %}
+
+  <h3>Edit topic: {{ topic }}</h3>
+
+  <form action="{% url 'learning_logs:edit_topic' topic.id%}" method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button name = "submit" class="btn btn-primary">Confirm</button>
+    {% endbuttons %}  </form>
+
+
+{% endblock content %}

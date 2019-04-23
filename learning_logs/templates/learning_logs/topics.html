@@ -1,0 +1,35 @@
+{% extends "learning_logs/base.html" %}
+
+
+
+{% block header %}
+  <h3>Topics</h3>
+{% endblock header %}
+
+
+{% block content %}
+  <h4><a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a></h4>
+
+  <ul>
+    {% for topic in topics %}
+      <li>
+        <h4>
+          <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+          <small class="nav navbar-nav navbar-right">
+            <a href="{% url 'learning_logs:edit_topic' topic.id %}">Edit</a> -
+            <a href="{% url 'learning_logs:del_topic' topic.id %}">Delete</a>
+          </small>
+        </h4>
+      </li>
+{#      <h6>#}
+{#        <a href="{% url 'learning_logs:edit_topic' topic.id %}">Edit</a> -#}
+{#        <a href="{% url 'learning_logs:del_topic' topic.id %}">Delete</a>#}
+{#      </h6>#}
+
+    {% empty %}
+      <li>No topics have been added yet.</li>
+    {% endfor %}
+  </ul>
+
+
+{% endblock content %}
